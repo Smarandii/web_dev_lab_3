@@ -24,3 +24,6 @@ def publications_page():
     return render_template('publications.html', publications=publications)
 
 
+@app.route('/tags')
+def tags_page():
+    return render_template('tags.html')
