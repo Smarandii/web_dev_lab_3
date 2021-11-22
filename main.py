@@ -17,9 +17,9 @@ def publications_page():
     Функция, которая рендерит страницу http://localhost:5000/publications
     """
     publications = [
-        {"id": 1, "author": "Имя Автора", "post_title": "Заголовок поста", "post_txt": "Текст поста", "publication_date": "Дата публикации"},
-        {"id": 2, "author": "Имя Автора", "post_title": "Заголовок поста", "post_txt": "Текст поста", "publication_date": "Дата публикации"},
-        {"id": 3, "author": "Имя Автора", "post_title": "Заголовок поста", "post_txt": "Текст поста", "publication_date": "Дата публикации"}
+        {"id": 1, "author": "Имя Автора", "post_title": "Заголовок поста", "post_txt": "Текст поста", "publication_date": "Дата публикации", "tags": ["кяввм"]},
+        {"id": 2, "author": "Имя Автора", "post_title": "Заголовок поста", "post_txt": "Текст поста", "publication_date": "Дата публикации", "tags": ["кяввм"]},
+        {"id": 3, "author": "Имя Автора", "post_title": "Заголовок поста", "post_txt": "Текст поста", "publication_date": "Дата публикации", "tags": ["кяввм"]}
     ]
     return render_template('publications.html', publications=publications)
 
@@ -27,3 +27,15 @@ def publications_page():
 @app.route('/tags')
 def tags_page():
     return render_template('tags.html')
+
+
+@app.route('/login')
+def login_page():
+    return render_template('login.html')
+
+
+@app.route('/register')
+def register_page():
+    return render_template('register.html')
+
+
