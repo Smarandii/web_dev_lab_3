@@ -2,12 +2,16 @@
 {% block title %}Публикации по КЯВВМ{% endblock %}
 {% block content %}
 <h1>Публикации на сайте по сериалу</h1>
-    <h1>"Как я встретил вашу маму"</h1>
+<h1>"Как я встретил вашу маму"</h1>
     {% for publication in publications %}
-        <p>{{publication["author"]}}</p>
+        <a href='{{ url_for("home_page") + "/" + publication["author"] }}'><b>{{publication["author"]}}</b></a>
         <p>{{publication["post_title"]}}</p>
         <p>{{publication["post_txt"]}}</p>
         <p>{{publication["publication_date"]}}</p>
+        {% for tag in publication["tags"] %}
+            <p>{{tag}}</p>
+        {% endfor %}
+
     {% endfor %}
 {% endblock %}
 

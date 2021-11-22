@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Публикация №{{post_id}}{% endblock %}
+{% block content %}
+<h1>Публикация №{{post_id}} на сайте по сериалу</h1>
+<h1>"Как я встретил вашу маму"</h1>
+{% for publication in publications %}
+    <p></p>
+        {% if publication["id"] == post_id %}
+            <a href='{{ url_for("home_page") + "/" + publication["author"] }}'><b>{{publication["author"]}}</b></a>
+            <p>{{publication["post_title"]}}</p>
+            <p>{{publication["post_txt"]}}</p>
+            <p>{{publication["publication_date"]}}</p>
+            {% for tag in publication["tags"] %}
+                <p>{{tag}}</p>
+            {% endfor %}
+        {% endif %}
+
+{% endfor %}
+
+{% endblock %}
