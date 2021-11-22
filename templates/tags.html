@@ -1,2 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}Тэги публикаций{% endblock %}
+{% block content %}
+<h1>Тэги на сайте по сериалу</h1>
+<h1>"Как я встретил вашу маму"</h1>
+{% for tag in tags %}
+    <a href='{{url_for("tag_page", tag=tag )}}'><b>{{tag}}</b></a>
+{% endfor %}
+{% endblock %}

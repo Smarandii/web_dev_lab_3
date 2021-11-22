@@ -12,3 +12,7 @@ users = [
     {"username": "Barney_Stinson", "age": "33", "register_date": "Дата регистрации"},
     {"username": "Robin_Sherbatsky", "age": "29", "register_date": "Дата регистрации"}
 ]
+
+tags = [
+    "кяввм"
+]

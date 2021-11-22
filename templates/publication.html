@@ -11,7 +11,7 @@
             <p>{{publication["post_txt"]}}</p>
             <p>{{publication["publication_date"]}}</p>
             {% for tag in publication["tags"] %}
-                <p>{{tag}}</p>
+                <a href='{{ url_for("tag_page", tag=tag ) }}' >{{tag}}</a>
             {% endfor %}
         {% endif %}
 
