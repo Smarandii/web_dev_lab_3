@@ -1,5 +1,5 @@
 publications = [
-        {"id": 1, "author": "Ted_Mosby", "post_title": "Заголовок поста", "post_txt": "Текст поста",
+        {"id": 1, "author": "Ted_Mosby", "post_title": "Заголовок   поста", "post_txt": "Текст поста",
          "publication_date": "Дата публикации", "tags": ["кяввм"]},
         {"id": 2, "author": "Barney_Stinson", "post_title": "Заголовок поста", "post_txt": "Текст поста",
          "publication_date": "Дата публикации", "tags": ["кяввм"]},
