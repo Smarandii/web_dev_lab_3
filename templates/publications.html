@@ -2,15 +2,20 @@
 {% block title %}Публикации по КЯВВМ{% endblock %}
 {% block content %}
 <h1 align="center">Публикации на сайте по сериалу "Как я встретил вашу маму"</h1>
+<div align="center"><p>----------------</p></div>
     {% for publication in publications %}
         <div class="container" align="center">
-                <a href='{{ url_for("home_page") + "/" + publication["author"] }}'><b>{{publication["author"]}}</b></a>
-                <p>{{publication["post_title"]}}</p>
-                <p>{{publication["post_txt"]}}</p>
-                <p>{{publication["publication_date"]}}</p>
-                {% for tag in publication["tags"] %}
-                    <p><a href='{{url_for("tag_page", tag=tag )}}'>#{{tag}}</a></p>
-                {% endfor %}
+
+                <p>
+                    <a href='{{ url_for("home_page") + "/" + publication["author"] }}'><b>{{publication["author"]}}</b></a>
+                    <h3>{{publication["post_title"]}}</h3>
+                    <p>{{publication["post_txt"]}}</p>
+                    <p>{{publication["publication_date"]}}</p>
+                    {% for tag in publication["tags"].split(" ") %}
+                        <a href='{{url_for("tag_page", tag=tag )}}'>{{tag}}</a>
+                    {% endfor %}
+                </p>
+                <p>----------------</p>
         </div>
     {% endfor %}
 {% endblock %}

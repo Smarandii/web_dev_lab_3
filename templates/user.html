@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 {% block title %}Публикация №{{post_id}}{% endblock %}
 {% block content %}
-<h1>Пользователь {{username}} на сайте по сериалу</h1>
-<h1>"Как я встретил вашу маму"</h1>
+<h1 align="center">Пользователь {{username}} на сайте по сериалу "Как я встретил вашу маму"</h1>
 {% for user in users %}
         {% if user["username"] == username %}
-            <a><b>Имя пользователя: {{user["username"]}}</b></a>
-            <p>Возраст: {{user["age"]}}</p>
+        <div align="center">
+            <h3>Возраст: {{user["age"]}}</h3>
             <p>Дата регистрации: {{user["register_date"]}}</p>
-            <p>Публикации пользователя:</p>
+            <h5>Публикации пользователя:</h5>
             {% for publication in publications %}
               {% if publication['author'] == username %}
                 <a href="{{ url_for('publication_page', post_id=publication['id']) }}"><b>{{publication['post_title']}}</b></a>
               {% endif %}
             {% endfor %}
+        </div>
         {% endif %}
 {% endfor %}
 
