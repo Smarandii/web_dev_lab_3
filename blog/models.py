@@ -16,4 +16,4 @@ class User(db.Model):
     age = db.Column(db.Integer(), nullable=False)
     register_date = db.Column(db.String(length=10), nullable=False)
     email_address = db.Column(db.String(length=50), nullable=True, unique=True)
-    password_hash = db.Column(db.Strign(length=60), nullable=False)
+    password_hash = db.Column(db.String(length=60), nullable=False)

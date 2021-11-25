@@ -1,6 +1,6 @@
 from blog import app
 from flask import render_template
-from blog.models import Publication
+from blog.models import Publication, User
 
 
 def get_tags():
@@ -12,8 +12,7 @@ def get_tags():
     return tags
 
 
-@app.route('/')
-@app.route('/home')
+
 def home_page():
     """
         Функция, которая рендерит страницу http://localhost:5000/ или http://localhost:5000/home
@@ -30,6 +29,8 @@ def username_page(username):
     return render_template("user.html", username=username, users=User.query.all(), publications=Publication.query.all())
 
 
+@app.route('/')
+@app.route('/home')
 @app.route('/publications/')
 def publications_page():
     """

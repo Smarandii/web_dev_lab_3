@@ -7,7 +7,7 @@
         <div class="container" align="center">
 
                 <p>
-                    <a href='{{ url_for("home_page") + "/" + publication["author"] }}'><b>{{publication["author"]}}</b></a>
+                    <a href='{{ url_for("username_page", username=publication["author"])}}'><b>{{publication["author"]}}</b></a>
                     <h3>{{publication["post_title"]}}</h3>
                     <p>{{publication["post_txt"]}}</p>
                     <p>{{publication["publication_date"]}}</p>

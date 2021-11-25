@@ -5,7 +5,7 @@
 {% for publication in publications %}
     {% if tag in publication['tags'] %}
         <div align="center">
-            <a href='{{ url_for("home_page") + "/" + publication["author"] }}'><b>{{publication["author"]}}</b></a>
+            <a href='{{ url_for("username_page", username=publication["author"])}}'><b>{{publication["author"]}}</b></a>
             <p>{{publication["post_title"]}}</p>
             <p>{{publication["post_txt"]}}</p>
             <p>{{publication["publication_date"]}}</p>
