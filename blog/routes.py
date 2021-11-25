@@ -1,8 +1,6 @@
-from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
-app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///blog.db'
-db = SQLAlchemy(app)
+from blog import app
+from flask import render_template
+from blog.models import Publication
 
 
 def get_tags():
@@ -12,22 +10,6 @@ def get_tags():
         for t in p.tags.split(" "):
             tags.add(t)
     return tags
-
-
-class Publication(db.Model):
-    id = db.Column(db.Integer(), primary_key=True)
-    author = db.Column(db.String(length=30), nullable=False)
-    post_title = db.Column(db.String(length=30), nullable=False)
-    post_txt = db.Column(db.String(length=1024), nullable=False)
-    publication_date = db.Column(db.String(length=15), nullable=False)
-    tags = db.Column(db.String(50))
-
-
-class User(db.Model):
-    id = db.Column(db.Integer(), primary_key=True)
-    username = db.Column(db.String(length=30), nullable=False)
-    age = db.Column(db.Integer(), nullable=False)
-    register_date = db.Column(db.String(length=10), nullable=False)
 
 
 @app.route('/')
@@ -95,5 +77,3 @@ def register_page():
         Функция, которая рендерит страницу http://localhost:5000/register
     """
     return render_template('register.html')
-
-

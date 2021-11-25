@@ -1,4 +1,6 @@
-from main import db, Publication, User
+from blog import db
+from blog.models import Publication, User
+
 db.create_all()
 
 p1 = Publication(author="Ted_Mosby", post_title="Не друзья.",
