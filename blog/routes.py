@@ -1,10 +1,10 @@
 import datetime
 
 from blog import app, db
-from flask import render_template, redirect, url_for
-
-from blog.forms import RegisterForm
+from flask import render_template, redirect, url_for, flash
+from blog.forms import RegisterForm, LoginForm, NewPublicationForm
 from blog.models import Publication, User
+from flask_login import login_user
 
 
 def get_tags():
@@ -60,12 +60,21 @@ def tags_page():
     return render_template('tags.html', tags=tags)
 
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login_page():
     """
         Функция, которая рендерит страницу http://localhost:5000/login
     """
-    return render_template('login.html')
+    form = LoginForm()
+    if form.validate_on_submit():
+        attempted_user = User.query.filter_by(username=form.username.data).first()
+        if attempted_user and attempted_user.check_password_correction(attempted_password=form.password.data):
+            login_user(attempted_user)
+            flash(['Вход выполнен'], category='success')
+            return redirect(url_for('username_page', username=attempted_user.username))
+        else:
+            flash(['Имя пользователя или пароль введены неверно!'], category='danger')
+    return render_template('login.html', form=form)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -79,11 +88,28 @@ def register_page():
                               email_address=form.email_address.data,
                               date_of_birth=f"{form.date_of_birth.data.day}.{form.date_of_birth.data.month}.{form.date_of_birth.data.year}",
                               register_date=f"{datetime.date.today().day}.{datetime.date.today().month}.{datetime.date.today().year}",
-                              password_hash=form.password1.data)
+                              password=form.password1.data)
         db.session.add(user_to_create)
         db.session.commit()
         return redirect(url_for('publications_page'))
     if form.errors != {}:
         for err_msg in form.errors.values():
-            print(err_msg)
+            flash(err_msg, category='danger')
     return render_template('register.html', form=form)
+
+
+@app.route('/new_publication', methods=['GET', 'POST'])
+def new_publication_page():
+    form = NewPublicationForm()
+    if form.validate_on_submit():
+        publication_to_create = Publication(author=current_user.username,
+                                            post_title=form.post_title.data,
+                                            post_txt=form.post_txt.data,
+                                            publication_date=f"{datetime.date.today().day}.{datetime.date.today().month}.{datetime.date.today().year}",
+                                            tags=form.tags.data
+                                            )
+        db.session.add(publication_to_create)
+        db.session.commit()
+        return redirect(url_for('publication_page', post_id=publication_to_create.id))
+        # TODO
+    return render_template('new_publication.html', form=form)

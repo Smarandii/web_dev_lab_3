@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% block title %}Пользователь{% endblock %}
+
 {% block content %}
-<h1 align="center">Пользователь {{username}} на сайте по сериалу "Как я встретил вашу маму"</h1>
+<div class="container">
+    <br>
+<h1 align="center">Пользователь {{username}}</h1>
 {% for user in users %}
         {% if user["username"] == username %}
         <div align="center">
@@ -16,5 +19,5 @@
         </div>
         {% endif %}
 {% endfor %}
-
+</div>
 {% endblock %}
