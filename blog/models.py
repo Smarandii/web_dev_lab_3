@@ -13,7 +13,7 @@ class Publication(db.Model):
 class User(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     username = db.Column(db.String(length=30), nullable=False, unique=True)
-    age = db.Column(db.Integer(), nullable=False)
+    date_of_birth = db.Column(db.String(length=10), nullable=False)
     register_date = db.Column(db.String(length=10), nullable=False)
-    email_address = db.Column(db.String(length=50), nullable=True, unique=True)
+    email_address = db.Column(db.String(length=50), nullable=True)
     password_hash = db.Column(db.String(length=60), nullable=False)

@@ -1,5 +1,9 @@
-from blog import app
-from flask import render_template
+import datetime
+
+from blog import app, db
+from flask import render_template, redirect, url_for
+
+from blog.forms import RegisterForm
 from blog.models import Publication, User
 
 
@@ -10,14 +14,6 @@ def get_tags():
         for t in p.tags.split(" "):
             tags.add(t)
     return tags
-
-
-
-def home_page():
-    """
-        Функция, которая рендерит страницу http://localhost:5000/ или http://localhost:5000/home
-    """
-    return render_template("home.html")
 
 
 @app.route('/<username>')
@@ -72,9 +68,22 @@ def login_page():
     return render_template('login.html')
 
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register_page():
     """
         Функция, которая рендерит страницу http://localhost:5000/register
     """
-    return render_template('register.html')
+    form = RegisterForm()
+    if form.validate_on_submit():
+        user_to_create = User(username=form.username.data,
+                              email_address=form.email_address.data,
+                              date_of_birth=f"{form.date_of_birth.data.day}.{form.date_of_birth.data.month}.{form.date_of_birth.data.year}",
+                              register_date=f"{datetime.date.today().day}.{datetime.date.today().month}.{datetime.date.today().year}",
+                              password_hash=form.password1.data)
+        db.session.add(user_to_create)
+        db.session.commit()
+        return redirect(url_for('publications_page'))
+    if form.errors != {}:
+        for err_msg in form.errors.values():
+            print(err_msg)
+    return render_template('register.html', form=form)

@@ -42,15 +42,15 @@ publications = [Publication(
         tags="#тед")
 ]
 users = [
-    User(username="Ted_Mosby", age=27, register_date="24.11.2021", email_address="teg@mosby.com",
+    User(username="Ted_Mosby", date_of_birth='25.04.1978', register_date="24.11.2021", email_address="teg@mosby.com",
          password_hash='123' * 20),
-    User(username="Barney_Stinson", age=27, register_date="24.11.2021", email_address="barney@stinson.com",
+    User(username="Barney_Stinson", date_of_birth="24.11.1975", register_date="24.11.2021", email_address="barney@stinson.com",
          password_hash='123' * 20),
-    User(username="Robin_Sherbatsky", age=26, register_date="24.11.2021", email_address="robin@sherbatsky.com",
+    User(username="Robin_Sherbatsky", date_of_birth="24.07.1980", register_date="24.11.2021", email_address="robin@sherbatsky.com",
          password_hash='123' * 20),
-    User(username="Marshal_Ericson", age=27, register_date="25.11.2021", email_address="marshal@ericson.com",
+    User(username="Marshal_Ericson", date_of_birth="25.04.1978", register_date="25.11.2021", email_address="marshal@ericson.com",
          password_hash='123' * 20),
-    User(username="Lily_Aldrin", age=27, register_date="25.11.2021", email_address="lily@aldrin.com",
+    User(username="Lily_Aldrin", date_of_birth="22.03.1978", register_date="25.11.2021", email_address="lily@aldrin.com",
          password_hash='123' * 20)
 ]
 

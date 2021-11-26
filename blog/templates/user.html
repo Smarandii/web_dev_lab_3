@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-{% block title %}Публикация №{{post_id}}{% endblock %}
+{% block title %}Пользователь{% endblock %}
 {% block content %}
 <h1 align="center">Пользователь {{username}} на сайте по сериалу "Как я встретил вашу маму"</h1>
 {% for user in users %}
         {% if user["username"] == username %}
         <div align="center">
-            <h3>Возраст: {{user["age"]}}</h3>
+            <h3>Дата рождения: {{user["date_of_birth"]}}</h3>
             <p>Дата регистрации: {{user["register_date"]}}</p>
             <h5>Публикации пользователя:</h5>
             {% for publication in publications %}
