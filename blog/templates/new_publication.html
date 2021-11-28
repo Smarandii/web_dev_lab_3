@@ -7,6 +7,8 @@
       {{ form.hidden_tag() }}
       <br>
       <h1>Создать новую публикацию</h1>
+      {{ form.author.label() }}
+      {{ form.author(class="form-control", placeholder=current_user.username) }}
       {{ form.post_title.label() }}
       {{ form.post_title(class="form-control") }}
       {{ form.post_txt.label() }}

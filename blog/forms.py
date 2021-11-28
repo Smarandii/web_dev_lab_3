@@ -32,12 +32,18 @@ class LoginForm(FlaskForm):
 class NewPublicationForm(FlaskForm):
     def validate_tags(self, tags):
         try:
-            t = tags.split(" ")
-            if len(t) != tags.count("#"):
+            t = tags.data.split(" ")
+            if len(t) != tags.data.count("#"):
                 raise ValidationError("В начале каждого тега должен быть хэштег")
-        except Exception:
-            raise ValidationError("Тэги должны быть введены через запятую, в начале каждого тега должен быть хэштег")
+        except Exception as e:
+            print(e.args)
+            raise ValidationError("Тэги должны быть введены через пробел, в начале каждого тега должен быть хэштег")
 
+    def validate_author(self, author):
+        if " " in author.data:
+            raise ValidationError("В вашем псевдониме не должно быть пробелов!")
+
+    author = StringField(label='Опубликовать под псевдонимом:', validators=[DataRequired()])
     post_title = StringField(label='Заголовок публикации', validators=[DataRequired()])
     post_txt = StringField(label='Текст публикации', validators=[DataRequired()])
     tags = StringField(label="Тэги", validators=[DataRequired()])

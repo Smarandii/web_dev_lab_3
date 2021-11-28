@@ -102,7 +102,7 @@ def register_page():
 def new_publication_page():
     form = NewPublicationForm()
     if form.validate_on_submit():
-        publication_to_create = Publication(author=current_user.username,
+        publication_to_create = Publication(author=form.author.data,
                                             post_title=form.post_title.data,
                                             post_txt=form.post_txt.data,
                                             publication_date=f"{datetime.date.today().day}.{datetime.date.today().month}.{datetime.date.today().year}",
@@ -111,5 +111,8 @@ def new_publication_page():
         db.session.add(publication_to_create)
         db.session.commit()
         return redirect(url_for('publication_page', post_id=publication_to_create.id))
-        # TODO
+    if form.errors != {}:
+        for err_msg in form.errors.values():
+            flash(err_msg, category='danger')
+
     return render_template('new_publication.html', form=form)
