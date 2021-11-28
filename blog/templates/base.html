@@ -34,7 +34,7 @@
                         <a class="nav-link" href="{{ url_for('username_page', username=current_user.username) }}">{{current_user.username}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Выйти</a>
+                        <a class="nav-link" href="{{ url_for('logout_page') }}">Выйти</a>
                     </li>
 
                 </ul>
