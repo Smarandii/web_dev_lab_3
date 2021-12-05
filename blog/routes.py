@@ -25,8 +25,12 @@ def username_page(username):
     return render_template("user.html", username=username, users=User.query.all(), publications=Publication.query.all())
 
 
-@app.route('/')
 @app.route('/home')
+@app.route('/')
+def reroute_to_publications_page():
+    return redirect('publications_page')
+
+
 @app.route('/publications/')
 def publications_page():
     """
